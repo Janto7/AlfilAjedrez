@@ -20,7 +20,7 @@ public class Posicion {
 	}
 	private void setFila(int fila) {
 		if (fila<1 || fila>8) {
-			throw new IllegalArgumentException ("ERROR: fila no validad.");
+			throw new IllegalArgumentException ("ERROR: fila no valida.");
 		}
 		this.fila = fila;
 	}
@@ -29,9 +29,40 @@ public class Posicion {
 	}
 	private void setColumna(char columna) {
 		if (columna < 'a' || fila > 'h') {
-			throw new IllegalArgumentException ("ERROR: columna no validad.");
+			throw new IllegalArgumentException ("ERROR: columna no valida.");
 		}
 		this.columna = columna;
+	
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + columna;
+		result = prime * result + fila;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Posicion other = (Posicion) obj;
+		if (columna != other.columna)
+			return false;
+		if (fila != other.fila)
+			return false;
+		return true;
 	}
 	
 }
+
+
+
+	
+
