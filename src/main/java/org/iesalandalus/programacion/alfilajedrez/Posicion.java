@@ -4,12 +4,17 @@ public class Posicion {
 	
 	private int fila;
 	private char columna;
+	
+	public Posicion (int fila, char columna) {
+		setFila(fila);
+		setColumna(columna);
+	}
 	public int getFila() {
 		return fila;
 	}
 	private void setFila(int fila) {
 		if (fila<1 || fila>8) {
-			throw new IllegalArgumentException ("ERROR: fila no validad");
+			throw new IllegalArgumentException ("ERROR: fila no validad.");
 		}
 		this.fila = fila;
 	}
@@ -17,6 +22,9 @@ public class Posicion {
 		return columna;
 	}
 	private void setColumna(char columna) {
+		if (columna < 'a' || fila > 'h') {
+			throw new IllegalArgumentException ("ERROR: fila no validad.");
+		}
 		this.columna = columna;
 	}
 	
