@@ -20,7 +20,7 @@ public class Posicion {
 	}
 	private void setFila(int fila) {
 		if (fila<1 || fila>8) {
-			throw new IllegalArgumentException ("ERROR: fila no valida.");
+			throw new IllegalArgumentException ("ERROR: Fila no válida.");
 		}
 		this.fila = fila;
 	}
@@ -29,7 +29,7 @@ public class Posicion {
 	}
 	private void setColumna(char columna) {
 		if (columna < 'a' || fila > 'h') {
-			throw new IllegalArgumentException ("ERROR: columna no valida.");
+			throw new IllegalArgumentException ("ERROR: Columna no válida.");
 		}
 		this.columna = columna;
 	
@@ -62,7 +62,7 @@ public class Posicion {
 
 	@Override
 	public String toString() {
-		return "Posicion [fila=" + fila + ", columna=" + columna + "]";
+		return "fila=" + fila + ", columna=" + columna + "";
 	}
 	
 }
