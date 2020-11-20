@@ -8,6 +8,12 @@ public class Posicion {
 	public Posicion (int fila, char columna) {
 		setFila(fila);
 		setColumna(columna);
+	
+	}
+
+	public Posicion(Posicion Posicion) {
+		setFila(Posicion.getFila());
+		setColumna(Posicion.getColumna());
 	}
 	public int getFila() {
 		return fila;
