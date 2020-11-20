@@ -23,7 +23,7 @@ public class Posicion {
 	}
 	private void setColumna(char columna) {
 		if (columna < 'a' || fila > 'h') {
-			throw new IllegalArgumentException ("ERROR: fila no validad.");
+			throw new IllegalArgumentException ("ERROR: columna no validad.");
 		}
 		this.columna = columna;
 	}
