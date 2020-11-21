@@ -7,19 +7,37 @@ public class Alfil {
 	char columna;
 	
 
-	public Alfil(){
-		
-	}
+	
 	public Alfil(String color,int fila, char columna) {
 		
 		color = "NEGRO";
 		fila = 8;
-		posicion = 'f';
-		
-		
-	
+		columna = 'f';
 	}
-
+	public Alfil(String color) {
+		if (color == "BLANCO" ) {
+			fila = 1;
+			columna = 'f';
+		} else {
+			fila = 8;
+			columna = 'f';
+	} }
+	public Alfil(String color, char columna) {
+		while (columna < 'a' || columna > 'h') {
+			throw new IllegalArgumentException ("ERROR: Columna no válida.");
+		}
+			this.color = color;
+			fila = 8;
+			columna = 'c' | 'f'  ;
+			if (color == "BLANCO" ) {
+				fila = 1;
+				
+			} else {
+				fila = 8;
+			}		
+			
+		
+	} 
 	public String getColor() {
 		return color;
 	}
