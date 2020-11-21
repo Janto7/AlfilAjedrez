@@ -1,74 +1,106 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Alfil {
-	
+
 	String color;
 	int fila;
 	char columna;
-	
+	public Posicion posicion;
 
-	
-	public Alfil(String color,int fila, char columna) {
-		
+	private static final String ERROR_MOVIMIENTO = "Movimiento no permitido: ";
+
+	public Alfil(String color, int fila, char columna) {
+
 		color = "NEGRO";
 		fila = 8;
 		columna = 'f';
 	}
+
 	public Alfil(String color) {
-		if (color == "BLANCO" ) {
+		if (color == "BLANCO") {
 			fila = 1;
 			columna = 'f';
 		} else {
 			fila = 8;
 			columna = 'f';
-	} }
+		}
+	}
+
 	public Alfil(String color, char columna) {
 		while (columna < 'a' || columna > 'h') {
-			throw new IllegalArgumentException ("ERROR: Columna no válida.");
+			throw new IllegalArgumentException("ERROR: Columna no válida.");
 		}
-			this.color = color;
+		this.color = color;
+		fila = 8;
+		columna = 'c' | 'f';
+		if (color == "BLANCO") {
+			fila = 1;
+
+		} else {
 			fila = 8;
-			columna = 'c' | 'f'  ;
-			if (color == "BLANCO" ) {
-				fila = 1;
-				
-			} else {
-				fila = 8;
-			}		
-			
-		
-	} 
+		}
+
+	}
+
 	public String getColor() {
 		return color;
 	}
 
-	private void setColor(String color) {
-		if (color==null) {
-			throw new IllegalArgumentException ("ERROR: No es posible copiar una posición nula.");
-		}
+	public void setColor(String color) {
 		this.color = color;
 	}
 
-	public int getFila() {
-		return fila;
+	public Posicion getPosicion() {
+		return posicion;
 	}
 
-	private void setFila(int fila) {
-		if (fila<1 || fila>8) {
-			throw new IllegalArgumentException ("ERROR: No es posible copiar una posición nula.");
+	public void setPosicion(Posicion posicion) {
+		this.posicion = posicion;
+	}
+
+	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
+
+		if (direccion == null) {
+			throw new IllegalArgumentException("La dirección no puede ser nula.");
 		}
-		this.fila = fila;
-	}
-
-	public char getColumna() {
-		return columna;
-	}
-
-	public void setColumna(char columna) {
-		if (columna < 'a' || columna > 'h') {
-			throw new IllegalArgumentException ("ERROR: No es posible copiar una posición nula");
+		if (pasos <= 0) {
+			throw new IllegalArgumentException("El número de pasos debe ser mayor que cero.");
 		}
-		this.columna = columna;
+		switch (direccion) {
+		case ARRIBA_DERECHA:
+			try {
+				posicion.setFila(posicion.getColumna() + pasos);
+
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO + e.getMessage());
+			}
+			break;
+		case ABAJO_DERECHA:
+			try {
+				posicion.setFila(posicion.getColumna() + pasos);
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO + e.getMessage());
+			}
+			break;
+		case ABAJO_IZQUIERDA:
+			try {
+				posicion.setFila(posicion.getColumna() + pasos);
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO + e.getMessage());
+			}
+			break;
+		case ARRIBA_IZQUIERDA:
+			try {
+				posicion.setFila(posicion.getColumna() + pasos);
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO + e.getMessage());
+			}
+			break;
+		default:
+			break;
+		}
 	}
-	
-	}
+
+}
