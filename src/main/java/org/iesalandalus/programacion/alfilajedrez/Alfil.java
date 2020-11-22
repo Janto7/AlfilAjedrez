@@ -3,12 +3,22 @@ package org.iesalandalus.programacion.alfilajedrez;
 public class Alfil {
 	private Color color;
 	private Posicion posicion;
+	
+	
+	
+	
+	public Alfil() {
+		
+		color = color.NEGRO;
+		posicion = new Posicion(8, 'f');
+		
+	}
 
 	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+	private void setColor(Color color) {
 		if (color == null) {
 			throw new IllegalArgumentException("ERROR:El color no puede ser nulo.");
 		}
@@ -20,7 +30,7 @@ public class Alfil {
 		return posicion;
 	}
 
-	public void setPosicion(Posicion posicion) {
+	private void setPosicion(Posicion posicion) {
 		if (posicion==null) {
 			throw new IllegalArgumentException("ERROR:La posición no puede ser nula.");
 		}
