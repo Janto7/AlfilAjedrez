@@ -13,6 +13,14 @@ public class Alfil {
 		posicion = new Posicion(8, 'f');
 		
 	}
+	public Alfil(Color color) {
+		if (color==color.BLANCO) {
+			posicion = new Posicion(1, 'f');	
+		}
+		if (color==color.NEGRO) {
+			posicion = new Posicion(8, 'f');
+		}
+	}
 
 	public Color getColor() {
 		return color;
