@@ -17,6 +17,7 @@ public class Alfil {
 
 	public Alfil(Color color) {
 		setColor(color);
+		
 
 		if (color == Color.BLANCO) {
 
@@ -26,6 +27,7 @@ public class Alfil {
 			posicion = new Posicion(8, 'f');
 		}
 	}
+	
 
 	public Alfil(Color color, char columnaInicial) {
 		setColor(color);
@@ -46,9 +48,9 @@ public class Alfil {
 	}
 
 	private void setColor(Color color) {
-		if (color == null) {
+	if (color == null) {
 			throw new IllegalArgumentException("ERROR COLOR NULO");
-		}
+		}	
 		this.color = color;
 
 	}
