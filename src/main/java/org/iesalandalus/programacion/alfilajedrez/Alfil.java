@@ -5,8 +5,9 @@ import javax.naming.OperationNotSupportedException;
 public class Alfil {
 	private Color color;
 	private Posicion posicion;
-	private static final String ERROR_MOVIMIENTO = "ERROR: Movimiento no válido (se sale del tablero).";
+
 	private static final String ERROR_MOVIMIENTO_NO_VALIDO = "ERROR: Movimiento no válido (se sale del tablero).";
+
 	public Alfil() {
 
 		color = Color.NEGRO;
@@ -16,7 +17,9 @@ public class Alfil {
 
 	public Alfil(Color color) {
 		setColor(color);
+
 		if (color == Color.BLANCO) {
+
 			posicion = new Posicion(1, 'f');
 		}
 		if (color == Color.NEGRO) {
@@ -27,14 +30,15 @@ public class Alfil {
 	public Alfil(Color color, char columnaInicial) {
 		setColor(color);
 
-		if (color==Color.NEGRO) {
-			posicion = new Posicion(8, columnaInicial);
-		
+		if (columnaInicial != 'c' && columnaInicial != 'f') {
+			throw new IllegalArgumentException("ERROR: Columna no válida.");
 		}
-		 else if (color==Color.BLANCO) {
+		if (color == Color.BLANCO) {
 			posicion = new Posicion(1, columnaInicial);
-		 }
-		
+		} else if (color == Color.NEGRO) {
+			posicion = new Posicion(8, columnaInicial);
+		}
+
 	}
 
 	public Color getColor() {
@@ -43,7 +47,7 @@ public class Alfil {
 
 	private void setColor(Color color) {
 		if (color == null) {
-			throw new IllegalArgumentException("ERROR:El color no puede ser nulo.");
+			throw new IllegalArgumentException("ERROR COLOR NULO");
 		}
 		this.color = color;
 
@@ -57,58 +61,60 @@ public class Alfil {
 		return posicion;
 	}
 
-	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
+	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException, IllegalArgumentException {
 		if (direccion == null) {
-			throw new IllegalArgumentException("La dirección no puede ser nula.");
+			throw new IllegalArgumentException("ERROR_DIRECCION_NULA");
 		}
-		if (pasos <= 0) {
-			throw new IllegalArgumentException("El número de pasos debe ser mayor que cero.");
+		if (pasos <=0) {
+			throw new IllegalArgumentException("El número de pasos debe ser positivo.");
 		}
+		int Fila;
 		
-		int fila;
-		char columna;
+		char Columna;
 		switch (direccion) {
-			case ARRIBA_DERECHA:
+		case ARRIBA_DERECHA:
+			try {
+				Fila = posicion.getFila() + pasos;
 				
-				try {
-				fila = posicion.getFila() + pasos;
-				columna = (char) (posicion.getColumna() + pasos);
-				setPosicion();
-				} catch (IllegalArgumentException e) {
-					throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-				}
-				break;
-			case ABAJO_IZQUIERDA:
-				try {
-					fila = posicion.getFila() + pasos;
-					columna = (char) (posicion.getColumna() + pasos);
-					setPosicion();
-				} catch (IllegalArgumentException e) {
-					throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-				}
-				break;
-			case ARRIBA_IZQUIERDA:
-				try {
-					fila = posicion.getFila() + pasos;
-					columna = (char) (posicion.getColumna() + pasos);
-					setPosicion();
-				} catch (IllegalArgumentException e) {
-					throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-				}
-				break;
-			case ABAJO_DERECHA:
-				try {
-					fila = posicion.getFila() + pasos;
-					columna = (char) (posicion.getColumna() + pasos);
-					setPosicion();
-				} catch (IllegalArgumentException e) {
-					throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-				}
-				break;
-			default:
-				break;
+				Columna= (char) (posicion.getColumna() + pasos);
+				posicion = new Posicion();
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
+			}
+			break;
+		case ABAJO_DERECHA:
+			try {
+				Fila = posicion.getFila() + pasos;
+				
+				Columna= (char) (posicion.getColumna() + pasos);
+				posicion = new Posicion();
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
+			}
+			break;
+		case ABAJO_IZQUIERDA:
+			try {
+				Fila = posicion.getFila() + pasos;
+				
+				Columna= (char) (posicion.getColumna() + pasos);
+				posicion = new Posicion();
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
+			}
+			break;
+		case ARRIBA_IZQUIERDA:
+			try {
+				Fila = posicion.getFila() + pasos;
+				
+				Columna= (char) (posicion.getColumna() + pasos);
+				posicion = new Posicion();
+			} catch (IllegalArgumentException e) {
+				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
+			}
+			break;
+		default:
+			break;
 		}
-	
 	}
-	
+
 }

@@ -27,7 +27,7 @@ public class Posicion {
 		this.columna = posicion.getColumna();
 	}
 
-	public int getFila() {
+	public int getFila( ) {
 		return fila;
 	}
 
