@@ -1,23 +1,20 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
-import javax.naming.OperationNotSupportedException;
+
 
 public class Alfil {
 	private Color color;
 	private Posicion posicion;
 
-	private static final String ERROR_MOVIMIENTO_NO_VALIDO = "ERROR: Movimiento no válido (se sale del tablero).";
-
 	public Alfil() {
 
-		color = Color.NEGRO;
+		setColor(color.NEGRO);
 		posicion = new Posicion(8, 'f');
 
 	}
 
 	public Alfil(Color color) {
 		setColor(color);
-		
 
 		if (color == Color.BLANCO) {
 
@@ -27,7 +24,6 @@ public class Alfil {
 			posicion = new Posicion(8, 'f');
 		}
 	}
-	
 
 	public Alfil(Color color, char columnaInicial) {
 		setColor(color);
@@ -47,10 +43,10 @@ public class Alfil {
 		return color;
 	}
 
-	private void setColor(Color color) {
-	if (color == null) {
-			throw new IllegalArgumentException("ERROR COLOR NULO");
-		}	
+	private void setColor(Color color) throws IllegalArgumentException {
+		if (color == null) {
+			throw new IllegalArgumentException("ERROR: No se puede asignar un color nulo.");
+		}
 		this.color = color;
 
 	}
@@ -63,60 +59,49 @@ public class Alfil {
 		return posicion;
 	}
 
-	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException, IllegalArgumentException {
+	public void mover(Direccion direccion, int pasos) throws IllegalArgumentException {
 		if (direccion == null) {
-			throw new IllegalArgumentException("ERROR_DIRECCION_NULA");
+			throw new IllegalArgumentException("ERROR: La dirección no puede ser nula.");
 		}
-		if (pasos <=0) {
-			throw new IllegalArgumentException("El número de pasos debe ser positivo.");
+		if (pasos <= 0) {
+			throw new IllegalArgumentException("ERROR: El número de pasos debe ser positivo.");
 		}
-		int Fila;
 		
-		char Columna;
+		int fila = 0;
+		char columna;
+
 		switch (direccion) {
 		case ARRIBA_DERECHA:
-			try {
-				Fila = posicion.getFila() + pasos;
-				
-				Columna= (char) (posicion.getColumna() + pasos);
-				posicion = new Posicion();
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-			}
+			fila = posicion.getFila() + pasos;
+			columna = (char) ((int) posicion.getColumna() + pasos);
+			posicion = new Posicion(fila, columna);
+
 			break;
 		case ABAJO_DERECHA:
-			try {
-				Fila = posicion.getFila() + pasos;
-				
-				Columna= (char) (posicion.getColumna() + pasos);
-				posicion = new Posicion();
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-			}
+			fila = posicion.getFila() - pasos;
+
+			columna = (char) ((int) posicion.getColumna() + pasos);
+			posicion = new Posicion(fila, columna);
+
 			break;
 		case ABAJO_IZQUIERDA:
-			try {
-				Fila = posicion.getFila() + pasos;
-				
-				Columna= (char) (posicion.getColumna() + pasos);
-				posicion = new Posicion();
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-			}
+			fila = posicion.getFila() - pasos;
+
+			columna = (char) ((int) posicion.getColumna() - pasos);
+			posicion = new Posicion(fila, columna);
+
 			break;
 		case ARRIBA_IZQUIERDA:
-			try {
-				Fila = posicion.getFila() + pasos;
-				
-				Columna= (char) (posicion.getColumna() + pasos);
-				posicion = new Posicion();
-			} catch (IllegalArgumentException e) {
-				throw new OperationNotSupportedException(ERROR_MOVIMIENTO_NO_VALIDO + e.getMessage());
-			}
+			fila = posicion.getFila() + pasos;
+
+			columna = (char) ((int) posicion.getColumna() - pasos);
+			posicion = new Posicion(fila, columna);
+
 			break;
 		default:
 			break;
 		}
+		
 	}
 
 	@Override
@@ -139,9 +124,8 @@ public class Alfil {
 		Alfil other = (Alfil) obj;
 		if (color != other.color)
 			return false;
-		if (posicion == null) {
-			if (other.posicion != null)
-				return false;
+		if (posicion == null && other.posicion != null) {
+			return false;
 		} else if (!posicion.equals(other.posicion))
 			return false;
 		return true;
@@ -149,7 +133,23 @@ public class Alfil {
 
 	@Override
 	public String toString() {
-		return "Alfil [color=" + color + ", posicion=" + posicion + "]";
+		return   posicion + ", color=" + color;
 	}
+
+	
+	
+
+	
+
+	
+
+	
+	
+
+	
+
+	
+	
+
 	
 }

@@ -27,20 +27,15 @@ public class Posicion {
 		this.columna = posicion.getColumna();
 	}
 
-	public int getFila( ) {
+	public int getFila() {
 		return fila;
 	}
 
 	private void setFila(int fila) {
-		if (fila < 1 || fila > 8) {
-			throw new IllegalArgumentException("ERROR: Fila no válida.");
+		if (fila < MIN_FILA || fila > MAX_FILA) {
+			throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
 		} else {
 			this.fila = fila;
-			if (fila < MIN_FILA || fila > MAX_FILA) {
-				throw new IllegalArgumentException("ERROR: Fila no válida.");
-			} else {
-				this.fila = fila;
-			}
 		}
 	}
 
@@ -49,16 +44,10 @@ public class Posicion {
 	}
 
 	private void setColumna(char columna) {
-		if (columna < 'a' || columna > 'h') {
+		if (columna < MIN_COLUMNA || columna > MAX_COLUMNA) {
 			throw new IllegalArgumentException("ERROR: Columna no válida.");
 		} else {
 			this.columna = columna;
-
-			if (columna < MIN_COLUMNA || columna > MAX_COLUMNA) {
-				throw new IllegalArgumentException("ERROR: columna no válida.");
-			} else {
-				this.columna = columna;
-			}
 		}
 	}
 
@@ -80,16 +69,14 @@ public class Posicion {
 		if (getClass() != obj.getClass())
 			return false;
 		Posicion other = (Posicion) obj;
-		if (columna != other.columna)
-			return false;
-		if (fila != other.fila)
+		if (columna != other.columna || fila != other.fila)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "fila=" + fila + ", columna=" + columna + "";
+		return "fila=" + fila + ", columna=" + columna;
 	}
 
 }

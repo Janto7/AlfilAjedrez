@@ -66,7 +66,7 @@ public class AlfilTest {
 		try {
 			alfil = new Alfil(null);
 			fail(COLOR_NO_NULO);
-		} catch (NullPointerException e) {
+		} catch (IllegalArgumentException e) {
 			assertThat(EXCEPCION_MENSAJE_ADECUADO, e.getMessage(), is(ERROR_COLOR_NULO));
 			assertThat(OBJETO_DEBERIA_SER_NULL, alfil, is(nullValue()));
 		}
@@ -94,7 +94,7 @@ public class AlfilTest {
 		try {
 			alfil = new Alfil(null, 'g');
 			fail(EXCEPCION_MENSAJE_ADECUADO);
-		} catch (NullPointerException e) {
+		} catch (IllegalArgumentException e) {
 			assertThat(COLOR_NO_NULO, e.getMessage(), is(ERROR_COLOR_NULO));
 			assertThat(OBJETO_DEBERIA_SER_NULL, alfil, is(nullValue()));
 		}
@@ -154,7 +154,7 @@ public class AlfilTest {
 			assertThat(POSICION_NO_ESPERADA, alfilNegro.getPosicion(), is(new Posicion(3, 'a')));
 			alfilNegro.mover(Direccion.ARRIBA_DERECHA, 5);
 			assertThat(POSICION_NO_ESPERADA, alfilNegro.getPosicion(), is(new Posicion(8, 'f')));
-		} catch (OperationNotSupportedException e) {
+		} catch (IllegalArgumentException e) {
 			fail(NO_EXCEPCION_MOVIMIENTO_VALIDO);
 		}
 	}
@@ -165,12 +165,10 @@ public class AlfilTest {
 		try {
 			alfil.mover(null, 1);
 			fail(EXCEPCION_MOVIMIENTO_NO_VALIDO);
-		} catch (NullPointerException e) {
+		} catch (IllegalArgumentException e) {
 			assertThat(DIRECCION_NO_NULA, e.getMessage(), is(ERROR_DIRECCION_NULA));
 			assertThat(POSICION_NO_ESPERADA, alfil.getPosicion(), is(posicionDefectoNegro));
-		} catch (OperationNotSupportedException e) {
-			fail(NO_EXCEPCION);
-		}
+		} 
 	}
 	@Test
 	public void moverDireccionValidaPasosNoValidosLanzaExcepcionYNoMueveAlfil() {
@@ -181,18 +179,14 @@ public class AlfilTest {
 		} catch (IllegalArgumentException e) {
 			assertThat(PASOS_NO_POSTIVOS, e.getMessage(), is(ERROR_PASOS_NO_POSITIVOS));
 			assertThat(POSICION_NO_ESPERADA, alfil.getPosicion(), is(posicionDefectoNegro));
-		} catch (OperationNotSupportedException e) {
-			fail(NO_EXCEPCION);
-		}
+		} 
 		try {
 			alfil.mover(Direccion.ARRIBA_DERECHA, -1);
 			fail(EXCEPCION_MOVIMIENTO_NO_VALIDO);
 		} catch (IllegalArgumentException e) {
 			assertThat(PASOS_NO_POSTIVOS, e.getMessage(), is(ERROR_PASOS_NO_POSITIVOS));
 			assertThat(POSICION_NO_ESPERADA, alfil.getPosicion(), is(posicionDefectoNegro));
-		} catch (OperationNotSupportedException e) {
-			fail(NO_EXCEPCION);
-		}
+		} 
 	}
 	
 	@Test
@@ -201,7 +195,7 @@ public class AlfilTest {
 		try {
 			alfil.mover(Direccion.ARRIBA_DERECHA, 3);
 			fail(EXCEPCION_MOVIMIENTO_NO_VALIDO);
-		} catch (OperationNotSupportedException e) {
+		} catch (IllegalArgumentException e) {
 			assertThat(EXCEPCION_MENSAJE_ADECUADO, e.getMessage(), is(ERROR_MOVIMIENTO_NO_VALIDO));
 			assertThat(POSICION_NO_ESPERADA, alfil.getPosicion(), is(posicionDefectoNegro));
 		}
