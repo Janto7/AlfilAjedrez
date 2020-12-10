@@ -8,12 +8,12 @@ public class Posicion {
 	private static int MAX_FILA = 8;
 	private static char MIN_COLUMNA = 'a';
 	private static char MAX_COLUMNA = 'h';
+
 	public Posicion() {
 		fila = MIN_FILA;
 		columna = MIN_COLUMNA;
 	}
 
-	
 	public Posicion(int Fila, char Columna) {
 		setFila(Fila);
 		setColumna(Columna);
