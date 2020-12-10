@@ -1,12 +1,9 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
-
-
 public class Alfil {
 	private Color color;
 	private Posicion posicion;
 
-	
 	public Alfil() {
 
 		setColor(color.NEGRO);
@@ -67,7 +64,7 @@ public class Alfil {
 		if (pasos <= 0) {
 			throw new IllegalArgumentException("ERROR: El número de pasos debe ser positivo.");
 		}
-		
+
 		int fila = 0;
 		char columna;
 
@@ -102,7 +99,7 @@ public class Alfil {
 		default:
 			break;
 		}
-		
+
 	}
 
 	@Override
@@ -134,23 +131,7 @@ public class Alfil {
 
 	@Override
 	public String toString() {
-		return   posicion + ", color=" + color;
+		return posicion + ", color=" + color;
 	}
 
-	
-	
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-	
-
-	
 }
