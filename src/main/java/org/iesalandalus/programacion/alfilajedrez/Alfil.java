@@ -6,6 +6,7 @@ public class Alfil {
 	private Color color;
 	private Posicion posicion;
 
+	
 	public Alfil() {
 
 		setColor(color.NEGRO);
