@@ -121,4 +121,25 @@ private static char elegirColumnaInicial() {
 		}
 
 	}
+
+	private static void ejecutarOpcion(int opcionMenu) {
+		switch (opcionMenu) {
+		case 1:
+			crearAlfilPorDefecto();
+			mostrarAlfil();
+			break;
+		case 2:
+			crearAlfilColor();
+			mostrarAlfil();
+			break;
+		case 3:
+			crearAlfinColorColumna();
+			mostrarAlfil();
+			break;
+		case 4:
+			mover();
+			mostrarAlfil();
+			break;
+		}
+}
 }
