@@ -59,11 +59,38 @@ private static char elegirColumnaInicial() {
 		} while (caracter != 'c' && caracter != 'f');
 		return caracter;
 	}
-private static void mostrarMenuDirecciones() {
+	private static void mostrarMenuDirecciones() {
 	System.out.println("Menu direcciones");
 	System.out.println("1.- Arriba derecha");
 	System.out.println("2.- Arriba izquierda");
 	System.out.println("3.- Abajo derecha");
 	System.out.println("4.- Abajo izquierda");
 	}	
+	private static Direccion elegirDireccion() {
+	Scanner scanner = new Scanner(System.in);
+	int opcion = 0;
+	do {
+		try {
+			opcion = scanner.nextInt();
+		} catch (Exception e) {
+			System.out.println("La opción no es válida");
+			scanner.nextLine();
+		}
+	} while (opcion < 1 || opcion > 4);
+	Direccion retorno = null;
+	switch (opcion) {
+	case 1:
+		retorno = Direccion.ARRIBA_DERECHA;
+		break;
+	case 2:
+		retorno = Direccion.ARRIBA_IZQUIERDA;
+		break;
+	case 3:
+		retorno = Direccion.ABAJO_DERECHA;
+		break;
+	case 4:
+		retorno = Direccion.ABAJO_IZQUIERDA;
+	}
+	return retorno;
+}
 }
