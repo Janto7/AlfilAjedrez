@@ -57,20 +57,18 @@ public class Alfil {
 		return posicion;
 	}
 
-	public void mover(Direccion direccion,int pasos) throws IllegalArgumentException {
-		
+	public void mover(Direccion direccion, int pasos) throws IllegalArgumentException {
+
 		if (direccion == null) {
 			throw new IllegalArgumentException("ERROR: La dirección no puede ser nula.");
 		}
-		if (pasos <=0) {
+		if (pasos <= 0) {
 			throw new IllegalArgumentException("ERROR: El número de pasos debe ser positivo.");
 		}
-	
-		
-	
+
 		int fila = 0;
 		char columna;
-		
+
 		switch (direccion) {
 		case ARRIBA_DERECHA:
 			fila = posicion.getFila() + pasos;
@@ -102,10 +100,7 @@ public class Alfil {
 		default:
 			break;
 		}
-}
-		
-		
-	
+	}
 
 	@Override
 	public int hashCode() {
