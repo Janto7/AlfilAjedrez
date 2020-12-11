@@ -46,4 +46,17 @@ public class MainApp {
 			return Color.BLANCO;
 		return Color.NEGRO;
 	}
+private static char elegirColumnaInicial() {
+		
+		System.out.println("Elige columna entre c y f");
+		Scanner scanner = new Scanner(System.in);
+		char caracter;
+		do {
+			caracter = scanner.next().charAt(0);
+			if (caracter != 'c' && caracter != 'f') {
+				System.out.println("Opción no válida. Opción entre c y f");
+			}
+		} while (caracter != 'c' && caracter != 'f');
+		return caracter;
+	}
 }
