@@ -39,4 +39,11 @@ public class MainApp {
 		} while (opcion < 1 || opcion > 5);
 		return opcion;
 	}
+	private static Color elegirColor() {
+		System.out.println("Elige color blanco 1 o negro 2");
+		int opcion = elegirOpcion();
+		if (opcion == 1)
+			return Color.BLANCO;
+		return Color.NEGRO;
+	}
 }
