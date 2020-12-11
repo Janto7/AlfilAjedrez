@@ -10,14 +10,15 @@ public class MainApp {
 
 	public static void main(String[] args) {
 
-		
 	}
+
 	private static void mostrarAlfil() {
-		if(alfil != null)
+		if (alfil != null)
 			System.out.println(alfil);
 		else
 			System.out.println("Alfil sin datos");
 	}
+
 	private static void mostrarMenu() {
 		System.out.println("MENU PRINCIPAL");
 		System.out.println("1.- Crear alfil por defecto");
@@ -26,6 +27,7 @@ public class MainApp {
 		System.out.println("4.- Mover el alfil");
 		System.out.println("5.- Salir");
 	}
+
 	private static int elegirOpcion() {
 		Scanner scanner = new Scanner(System.in);
 		int opcion = 0;
@@ -39,6 +41,7 @@ public class MainApp {
 		} while (opcion < 1 || opcion > 5);
 		return opcion;
 	}
+
 	private static Color elegirColor() {
 		System.out.println("Elige color blanco 1 o negro 2");
 		int opcion = elegirOpcion();
@@ -46,8 +49,9 @@ public class MainApp {
 			return Color.BLANCO;
 		return Color.NEGRO;
 	}
-private static char elegirColumnaInicial() {
-		
+
+	private static char elegirColumnaInicial() {
+
 		System.out.println("Elige columna entre c y f");
 		Scanner scanner = new Scanner(System.in);
 		char caracter;
@@ -59,59 +63,64 @@ private static char elegirColumnaInicial() {
 		} while (caracter != 'c' && caracter != 'f');
 		return caracter;
 	}
+
 	private static void mostrarMenuDirecciones() {
-	System.out.println("Menu direcciones");
-	System.out.println("1.- Arriba derecha");
-	System.out.println("2.- Arriba izquierda");
-	System.out.println("3.- Abajo derecha");
-	System.out.println("4.- Abajo izquierda");
-	}	
+		System.out.println("Menu direcciones");
+		System.out.println("1.- Arriba derecha");
+		System.out.println("2.- Arriba izquierda");
+		System.out.println("3.- Abajo derecha");
+		System.out.println("4.- Abajo izquierda");
+	}
+
 	private static Direccion elegirDireccion() {
-	Scanner scanner = new Scanner(System.in);
-	int opcion = 0;
-	do {
-		try {
-			opcion = scanner.nextInt();
-		} catch (Exception e) {
-			System.out.println("La opción no es válida");
-			scanner.nextLine();
+		Scanner scanner = new Scanner(System.in);
+		int opcion = 0;
+		do {
+			try {
+				opcion = scanner.nextInt();
+			} catch (Exception e) {
+				System.out.println("La opción no es válida");
+				scanner.nextLine();
+			}
+		} while (opcion < 1 || opcion > 4);
+		Direccion retorno = null;
+		switch (opcion) {
+		case 1:
+			retorno = Direccion.ARRIBA_DERECHA;
+			break;
+		case 2:
+			retorno = Direccion.ARRIBA_IZQUIERDA;
+			break;
+		case 3:
+			retorno = Direccion.ABAJO_DERECHA;
+			break;
+		case 4:
+			retorno = Direccion.ABAJO_IZQUIERDA;
 		}
-	} while (opcion < 1 || opcion > 4);
-	Direccion retorno = null;
-	switch (opcion) {
-	case 1:
-		retorno = Direccion.ARRIBA_DERECHA;
-		break;
-	case 2:
-		retorno = Direccion.ARRIBA_IZQUIERDA;
-		break;
-	case 3:
-		retorno = Direccion.ABAJO_DERECHA;
-		break;
-	case 4:
-		retorno = Direccion.ABAJO_IZQUIERDA;
+		return retorno;
 	}
-	return retorno;
-	}
+
 	private static void crearAlfilPorDefecto() {
 		alfil = new Alfil();
 	}
+
 	private static void crearAlfilColor() {
 		Color color = elegirColor();
 		alfil = new Alfil(color);
 
 	}
+
 	private static void crearAlfinColorColumna() {
 		Color color = elegirColor();
 		char columnaInicial = elegirColumnaInicial();
 		alfil = new Alfil(color, columnaInicial);
 	}
-	
+
 	private static void mover() {
 		mostrarMenuDirecciones();
-		Direccion direccion  = elegirDireccion();
+		Direccion direccion = elegirDireccion();
 		System.out.println("Escoge el número de pasos:");
-		int numeroPasos = Entrada.entero();
+		int numeroPasos = elegirPasos();
 		try {
 			alfil.mover(direccion, numeroPasos);
 		} catch (NullPointerException e) {
@@ -141,5 +150,19 @@ private static char elegirColumnaInicial() {
 			mostrarAlfil();
 			break;
 		}
-}
+	}
+
+	private static int elegirPasos() { /* este método no sale en el esquema, no he encontrado la forma de hacerlo desde el propio metodo mover  */
+		Scanner scanner = new Scanner(System.in);
+		int opcion = 0;
+		do {
+			try {
+				opcion = scanner.nextInt();
+			} catch (Exception e) {
+				System.out.println("La opción no es válida");
+				scanner.nextLine();
+			}
+		} while (opcion < 1 || opcion > 7);
+		return opcion;
+	}
 }
