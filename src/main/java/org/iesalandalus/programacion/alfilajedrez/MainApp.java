@@ -96,4 +96,9 @@ private static char elegirColumnaInicial() {
 	private static void crearAlfilPorDefecto() {
 		alfil = new Alfil();
 	}
+	private static void crearAlfilColor() {
+		Color color = elegirColor();
+		alfil = new Alfil(color);
+
+	}
 }
