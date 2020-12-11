@@ -23,6 +23,7 @@ public class Posicion {
 		if (posicion == null) {
 			throw new NullPointerException("ERROR: No es posible copiar una posición nula.");
 		}
+		
 		this.fila = posicion.getFila();
 		this.columna = posicion.getColumna();
 	}
@@ -33,7 +34,9 @@ public class Posicion {
 
 	private void setFila(int fila) {
 		if (fila < MIN_FILA || fila > MAX_FILA) {
-			throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+			throw new IllegalArgumentException("ERROR: Fila no válida.");
+		
+		
 		} else {
 			this.fila = fila;
 		}
@@ -46,10 +49,13 @@ public class Posicion {
 	private void setColumna(char columna) {
 		if (columna < MIN_COLUMNA || columna > MAX_COLUMNA) {
 			throw new IllegalArgumentException("ERROR: Columna no válida.");
+		
 		} else {
 			this.columna = columna;
+	
 		}
-	}
+		}
+	
 
 	@Override
 	public int hashCode() {
