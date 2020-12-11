@@ -92,5 +92,8 @@ private static char elegirColumnaInicial() {
 		retorno = Direccion.ABAJO_IZQUIERDA;
 	}
 	return retorno;
-}
+	}
+	private static void crearAlfilPorDefecto() {
+		alfil = new Alfil();
+	}
 }
