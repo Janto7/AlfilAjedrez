@@ -26,4 +26,17 @@ public class MainApp {
 		System.out.println("4.- Mover el alfil");
 		System.out.println("5.- Salir");
 	}
+	private static int elegirOpcion() {
+		Scanner scanner = new Scanner(System.in);
+		int opcion = 0;
+		do {
+			try {
+				opcion = scanner.nextInt();
+			} catch (Exception e) {
+				System.out.println("La opción no es válida");
+				scanner.nextLine();
+			}
+		} while (opcion < 1 || opcion > 5);
+		return opcion;
 	}
+}
