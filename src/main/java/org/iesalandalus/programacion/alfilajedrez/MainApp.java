@@ -59,4 +59,11 @@ private static char elegirColumnaInicial() {
 		} while (caracter != 'c' && caracter != 'f');
 		return caracter;
 	}
+private static void mostrarMenuDirecciones() {
+	System.out.println("Menu direcciones");
+	System.out.println("1.- Arriba derecha");
+	System.out.println("2.- Arriba izquierda");
+	System.out.println("3.- Abajo derecha");
+	System.out.println("4.- Abajo izquierda");
+	}	
 }
