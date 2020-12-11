@@ -101,4 +101,9 @@ private static char elegirColumnaInicial() {
 		alfil = new Alfil(color);
 
 	}
+	private static void crearAlfinColorColumna() {
+		Color color = elegirColor();
+		char columnaInicial = elegirColumnaInicial();
+		alfil = new Alfil(color, columnaInicial);
+	}
 }
