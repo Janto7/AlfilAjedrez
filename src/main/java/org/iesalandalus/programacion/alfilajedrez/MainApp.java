@@ -106,4 +106,19 @@ private static char elegirColumnaInicial() {
 		char columnaInicial = elegirColumnaInicial();
 		alfil = new Alfil(color, columnaInicial);
 	}
+	
+	private static void mover() {
+		mostrarMenuDirecciones();
+		Direccion direccion  = elegirDireccion();
+		System.out.println("Escoge el número de pasos:");
+		int numeroPasos = Entrada.entero();
+		try {
+			alfil.mover(direccion, numeroPasos);
+		} catch (NullPointerException e) {
+			System.out.println("No has creado el alfil");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
 }
